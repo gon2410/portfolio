@@ -1,0 +1,179 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Olivera</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="page-container">
+        <div id="content-wrap">
+            <nav class="navbar navbar-expand-md">
+                <a class="navbar-brand mx-auto" href="index.html" style="font-family: 'Bebas Neue', cursive; color: black; padding-left: 10px;">Gonzalo Olivera</a>
+                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"></div>
+                <div class="mx-auto order-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href=""><img src="media/img/Otro/github.png" alt=""></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><img src="media/img/Otro/linkedin.png" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="container-sm mt-5">
+                
+                <h3>Boda de Rebeca y Carlos</h3>
+                <hr>
+
+                <div class="row rev">
+                    <div class="col" style="padding-top: 9%;">
+                        <p>Primera aplicacion web creada con Django/Python para backend, solo HTML,
+                        CSS, Bootstrap y JavaScript para frontend y SQLite en desarrollo y PostgreSQL en producción</p>
+                        <p>La app consiste en un formulario con los campos para escribir el nombre,
+                        apellido y el menu elegido del invitado. El diseño de la imagen 
+                        de fondo no es de mi parte. Fue trabajo de un diseñador.</p>
+                        <p>Utilizé <a href="https://www.heroku.com/">Heroku</a> como plataforma para desplegarla a
+                        producción. Solo estuvo activa 2 meses previos a la boda</p>
+                    </div>
+
+                    <div class="col">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_1.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_2.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+
+                    <div class="col" style="padding-top: 13%;">
+                        <p class="mt-3">A traves de un Event Listener puedo hacer que solo se pueda ingresar nombres
+                        apropiadamente escritos y no cualquier cosa. Si el usuario ingresa un numero o un caracter
+                        que no sea una letra del alfabeto el campo se delinea en rojo y el boton de submit
+                        ("confirmar asistencia") se deshabilita.</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row rev">
+                    <div class="col" style="padding-top: 13%;">
+                        <p class="mt-3">Si el usuario aprieta el boton de submit sin haber completado al menos un campo,
+                        aparecera un mensaje en rojo con una advertencia y no se agregara nada a la base de datos.</p>
+                    </div>
+                    
+                    <div class="col">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_3.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+                </div>
+                
+                <hr>
+
+                <div class="row">
+                    <div class="col"">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_4.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+                    
+                    <div class="col" style="padding-top: 13%;">
+                        <p class="mt-3">Algo similar sucede cuando algun usuario intenta agregar un nombre ya existente
+                        en la base de datos.</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row rev">
+                    <div class="col" style="padding-top: 13%;">
+                        <p class="mt-3">Cuando todos los campos son completados correctamente y el nombre no existe en la
+                            base de datos, aparecera un mensaje de exito y los datos se guardaran.</p>
+                    </div>
+                    
+                    <div class="col">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_5.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+                </div>
+
+                <hr>
+
+                <p class="mt-3">Usé el modelo predefinido de django "User" para guardar a los invitados ordenados
+                alfabeticamente. En la imagen de abajo se puede observar la pagina de administrador de django con la
+                lista de los invitados guardados. Tambien se puede notar que usé el campo de email para registrar el
+                menú de cada uno</p>
+                
+                <img src="media/img/rebeca_carlos/rebeca_carlos_admin.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+
+                <hr>
+
+                <div class="row">
+                    <div class="col">
+                        <img src="media/img/rebeca_carlos/rebeca_carlos_excel.png" alt="" class="img-fluid" style="width: 300px; height: auto; display: block; margin: auto;">
+                    </div>
+                    <div class="col" style="padding-top: 2%;">
+                        <p class="mt-3">Para facilitar el acceso a esa misma lista por parte de la pareja u organizador, utilizé <a href="https://pypi.org/project/xlwt/">xlwt</a>, una
+                        libreria de python para crear un archivo Excel con la lista de los invitados que confirmaron su asistencia
+                        y su respectivo menú. Tambien agregué la cantidad de invitados por menú.</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img id="aa" src="media/img/rebeca_carlos/rebeca_carlos_6.png" alt="">
+                            </div>
+                            <div class="col-sm">
+                                <img id="b" src="media/img/rebeca_carlos/rebeca_carlos_7.png" alt="">
+                            </div>
+                            <div class="col-sm">
+                                <img id="c" src="media/img/rebeca_carlos/rebeca_carlos_8.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="padding-top: 11%;">
+                        <p class="mt-3">El archivo se descarga a traves de un boton que esta protegido por contraseña para que no 
+                        lo descargue cualquiera. El boton solo se habilita cuando la contraseña correcta es ingresada, sino permanece
+                        deshabilitado.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <footer id="footer">
+            <nav class="navbar navbar-expand-md justify-content-center">
+                <p class="text-muted" style="font-size: 15px;">Gonzalo Olivera ©2022 <img src="media/argentina.png" alt="" width="20px"></p>
+            </nav>
+        </footer>
+      </div>
+    <style>
+        @media only screen and (max-width: 800px) {
+            .row {
+                display: block;
+            }
+            .rev{
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
+            aa, b, c {
+                width: 300px; height: auto; display: block; margin: auto;
+            }
+        }
+
+    </style>
+</body>
+</html>
