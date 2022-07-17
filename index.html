@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gonzalo Olivera</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="media/css/style.css" />
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -20,10 +20,10 @@
                 <div class="mx-auto order-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><img src="media/img/Otro/github.png" alt=""></a>
+                            <a class="nav-link" onclick="window.open('https://github.com/gon2410')"><img src="media/img/Otro/github.png" alt="" style="cursor: pointer;"></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><img src="media/img/Otro/linkedin.png" alt=""></a>
+                            <a class="nav-link" onclick="window.open('https://www.linkedin.com/in/gonzalo-olivera-124b091b4/')"><img src="media/img/Otro/linkedin.png" alt="" style="cursor: pointer;"></a>
                         </li>
                     </ul>
                 </div>
@@ -35,9 +35,9 @@
                 <hr>
                 <div class="container mb-5">
                     <div class="row justify-content-center">
-                        <div class="col-4">
+                        <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
                             <a href="rebeca_carlos.html" style="text-decoration: none;">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card" style="width: 18rem;" > <!--  -->
                                     <img class="card-img-top" src="media/img/rebeca_carlos/rebeca_carlos_thumb.png" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Boda de Rebeca y Carlos</h5>
@@ -46,9 +46,9 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
                             <a href="" style="text-decoration: none;">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
                                     <img class="card-img-top" src="media/img/ana_luciano/ana_luciano.png" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Boda de Ana y Luciano</h5>
@@ -66,7 +66,17 @@
                 <p class="text-muted" style="font-size: 15px;">Gonzalo Olivera ©2022 <img src="media/img/Otro/argentina.png" alt="" width="20px"></p>
             </nav>
         </footer>
-      </div>
+    </div>
     
+    <style>
+        @media only screen and (max-width: 800px) {
+            .card {
+                display: block;
+                margin: auto;
+            }
+        }
+
+    </style>
+
 </body>
 </html>
