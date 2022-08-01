@@ -1,0 +1,172 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Olivera</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <nav class="navbar navbar-expand-md">
+                <a class="navbar-brand mx-auto" href="index.html" style="font-family: 'Bebas Neue', cursive; color: black; padding-left: 10px;">Gonzalo Olivera</a>
+                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"></div>
+                <div class="mx-auto order-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="window.open('https://github.com/gon2410')"><img src="media/img/Otro/github.png" alt="" style="cursor: pointer;"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="window.open('https://www.linkedin.com/in/gonzalo-olivera-124b091b4/')"><img src="media/img/Otro/linkedin.png" alt="" style="cursor: pointer;"></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="container-sm mt-5">
+                
+                <h3>Guia de instalacion de ArchLinux (UEFI)</h3>
+                <hr>
+
+                <h4 class="mb-4 text-decoration-underline">Internet</h4>
+                <p class="m-3">Si no funciona, utilizar ethernet</p>
+                <div class="bg-light p-3">
+                    <code class="p-3"># wifi-menu</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Hora</h4>
+                <div class="bg-light p-3">
+                    <code class="p-3"># timedatectl set-ntp true</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Particionar disco</h4>
+                <p class="m-3">Depende de la capacidad del disco, en mi caso 1TB</p>
+                
+                <div class="bg-light p-3">
+                    <code class="p-3"># cfdisk /dev/sda</code>
+                </div>
+                <div class="m-3">
+                    <p>Elegir etiqueta GPT</p>
+                    <ul>
+                        <li>/dev/sda1 - boot = 1GB</li>
+                        <li>/dev/sda2 - swap = 8GB</li>
+                        <li>/dev/sda3 - root = 200GB</li>
+                        <li>/dev/sda4 - home = resto</li>
+                    </ul>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Formateando particiones</h4>
+                <p class="m-3">Formateo boot</p>
+
+                <div class="bg-light p-3">
+                    <code># mkfs.fat -F32 /dev/sda1</code>
+                </div>
+                
+                <p class="m-3">Formateo root</p>
+                <div class="bg-light p-3">
+                    <code># mkfs.ext4 /dev/sda3</code>
+                </div>
+
+                <p class="m-3">Formateo home</p>
+                <div class="bg-light p-3">
+                    <code># mkfs.ext4 /dev/sda4</code>
+                </div>
+
+                <p class="m-3">Creo swap</p>
+                <div class="bg-light p-3">
+                    <code># mkswap /dev/sda2</code>
+                </div>
+
+                <p class="m-3">Activo swap</p>
+                <div class="bg-light p-3">
+                    <code># swapon /dev/sda2</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Montando particiones</h4>
+                <p class="m-3">Monto root en /mnt</p>
+                <div class="bg-light p-3">
+                    <code># mount /dev/sda3 /mnt</code>
+                </div>
+
+                <p class="m-3">Creo directorio /mnt/home</p>
+                <div class="bg-light p-3">
+                    <code># mkdir /mnt/home</code>
+                </div>
+
+                <p class="m-3">Monto home en /mnt/home</p>
+                <div class="bg-light p-3">
+                    <code># mount /dev/sda4 /mnt/home</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Instalando el sistema base</h4>
+                <div class="bg-light p-3">
+                    <code># pacstrap /mnt base base-devel nano linux</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Generando fstab</h4>
+                <div class="bg-light p-3">
+                    <code># genfstab -U -p /mnt >> /mnt/etc/fstab</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Nuevo sistema instalado</h4>
+                <p class="m-3">Ingresando al sistema</p>
+                <div class="bg-light p-3">
+                    <code># arch-chroot /mnt</code>
+                </div>
+
+                <p class="m-3">Eligiendo idioma del sistema. Descomentar "en.US.UTF-8" (ingles)</p>
+                <div class="bg-light p-3">
+                    <code># nano /etc/locale.gen</code>
+                </div>
+
+                <p class="m-3">Luego</p>
+                <div class="bg-light p-3">
+                    <code># locale-gen</code>
+                </div>
+
+                <p class="m-3">Definiendo zona horaria. En mi caso..</p>
+                <div class="bg-light p-3">
+                    <code># ln -sf /usr/share/zone/America/Argentina/Buenos\ Aires /etc/localtime</code>
+                </div>
+
+                <p class="m-3">Luego</p>
+                <div class="bg-light p-3">
+                    <code># hwclock --systohc --utc</code>
+                </div>
+
+                <p class="m-3">Definiendo hostname. En mi caso es "arch". Elija el que quiera.</p>
+                <div class="bg-light p-3">
+                    <code># echo arch > /etc/hostname</code>
+                </div>
+
+                <p class="m-3">Instalar NetworkManager (internet)</p>
+                <div class="bg-light p-3">
+                    <code># pacman -S networkmanager</code>
+                </div>
+
+                <p class="m-3">Habilitar NetworkManager</p>
+                <div class="bg-light p-3">
+                    <code># systemctl enable NetworkManager</code>
+                </div>
+
+                <p class="m-3">Crear contraseña root</p>
+                <div class="bg-light p-3">
+                    <code># passwd</code>
+                </div>
+
+            </div>  
+                
+        </div>
+        <footer id="footer">
+            <nav class="navbar navbar-expand-md justify-content-center">
+                <p class="text-muted" style="font-size: 15px;">Gonzalo Olivera ©2022 <img src="media/img/Otro/argentina.png" alt="" width="20px"></p>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
