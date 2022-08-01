@@ -159,7 +159,96 @@
                     <code># passwd</code>
                 </div>
 
-            </div>  
+                <h4 class="mt-4 text-decoration-underline">GRUB (muy importante)</h4>
+                <p class="m-3">Instalando grub</p>
+                <div class="bg-light p-3">
+                    <code># pacman -S grub efibootmgr</code>
+                </div>
+
+                <p class="m-3">Creando directorio /boot/efi</p>
+                <div class="bg-light p-3">
+                    <code># mkdir /boot/efi</code>
+                </div>
+
+                <p class="m-3">Montando boot en /boot/efi</p>
+                <div class="bg-light p-3">
+                    <code># mount /dev/sda1 /boot/efi</code>
+                </div>
+
+                <p class="m-3">Instalando GRUB en /boot/efi</p>
+                <div class="bg-light p-3">
+                    <code># grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi</code>
+                </div>
+
+                <p class="m-3">Creando archivo de configuracion de GRUB</p>
+                <div class="bg-light p-3">
+                    <code># grub-mkconfig -o /boot/grub/grub.cfg</code>
+                </div>
+
+                <p class="m-3">Creando directorio /boot/efi/EFI/BOOT</p>
+                <div class="bg-light p-3">
+                    <code># mkdir /boot/efi/EFI/BOOT</code>
+                </div>
+
+                <p class="m-3">Creando copia de respaldo</p>
+                <div class="bg-light p-3">
+                    <code># cp /boot/efi/EFI/GRUB/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI</code>
+                </div>
+
+                <p class="m-3">Creando ejecutable para que el sistema arranque aunque haya errores</p>
+                <div class="bg-light p-3">
+                    <code># nano /boot/efi/startup.nsh</code>
+                </div>
+
+                <p class="m-3">Escribo..</p>
+                <div class="bg-light p-3">
+                    <code># bcf boot add 1 fs0:/EFI/GRUB/grubx64.efi "My Grub Bootloader"<br></code>
+                    <code># exit</code>
+                </div>
+
+                <p class="m-3">Luego guardo (Control+S) y salgo (Control+X)</p>
+
+                <p class="m-3">Salga del sistema</p>
+                <div class="bg-light p-3">
+                    <code># exit</code>
+                </div>
+
+                <p class="m-3">Desmonte el sistema (/mnt)</p>
+                <div class="bg-light p-3">
+                    <code># umount -R /mnt</code>
+                </div>
+
+                <p class="m-3">Reinicio el sistema</p>
+                <div class="bg-light p-3">
+                    <code># systemctl reboot</code>
+                </div>
+
+                <h4 class="mt-4 text-decoration-underline">Creando usuario</h4>
+                <p class="m-3">Logueando como root con la contraseña previamente definida</p>
+                
+                <p class="m-3">Creo usuario "fulanito". Elija el nombre que quiera</p>
+                <div class="bg-light p-3">
+                    <code># useradd -m -G wheel,video fulanito</code>
+                </div>
+
+                <p class="m-3">Contraseña del usuario "fulanito"</p>
+                <div class="bg-light p-3">
+                    <code># passwd fulanito</code>
+                </div>
+
+                <p class="m-3">Dandole privilegios de superusuario. Descomento la linea "WHEEL".</p>
+                <div class="bg-light p-3">
+                    <code># nano /etc/sudoers</code>
+                </div>
+
+                <p class="m-3">Salimos de root</p>
+                <div class="bg-light p-3">
+                    <code>exit</code>
+                </div>
+
+                
+
+            </div>
                 
         </div>
         <footer id="footer">
