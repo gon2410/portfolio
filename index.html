@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./bootstrap/bootstrap-5.3.0-dist/css/bootstrap.css">
 </head>
 <body class="bg-light">
-    <header>
+    <!-- <header>
         <nav class="navbar bg-dark border">
             <div class="container-fluid" id="navbar_div">
                 <a href="./index.html" class="navbar-brand text-light">Gonzalo Olivera</a>
@@ -19,40 +19,62 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
     
     <main>
-        <section class="p-1 m-1 mt-5">
-            <div class="section-title">
+        <section class="p-1">
+            <div class="row">
+                <div class="col">
+                    <h5>Gonzalo Olivera</h5>
+                    <p class="text-muted" style="font-size: small;">gonzalo_olivera24@hotmail.com</p>
+                    <a href="https://www.linkedin.com/in/gonzalo-olivera-124b091b4/"><img src="./images/linkedin-30.png" alt="linkedin_image"></a>
+                </div>
+                <div class="col"> 
+                    <img class="rounded float-end" src="./images/profile.jpg" alt="profile_image" width="125rem">
+                </div>
+            </div>
+            <div class="mt-5">
+                <h6>About</h6>
+            </div>
+
+            <hr>
+            <div>
+                <p style="font-size: 0.9rem;">Hello! My name is Gonzalo and I'm from Argentina. I'm currently a student of  Informatic Engineering. I 
+                    have some experience developing begginer apps. My skills currently are python-django, javascript - nodeJS and sql-mongoDB. I also have +5 years
+                    of experience using Linux (Arch and Ubuntu) as main operating system.
+                </p>
+            </div>
+            <div class="section-title mt-5">
                 <h6>Projects</h6>
             </div>
 
             <hr>
 
             <div class="section-body row" id="card-section">
-                <div class="card shadow rounded m-3" style="width: 18rem;">
-                    <img src="./images/confirmation_form_image.png" class="card-img-top" alt="confirmation_form_thumbnail">
+                <div class="card m-3" style="width: 18rem; height: 11.5rem;">
                     <div class="card-body">
-                        <h6 class="card-title">Form app</h6>
-                        <p class="card-text">
+                        <h6 class="card-title">form-excel</h6>
+                        <p class="card-text text-muted" style="font-size: small;">
+                            rsvp web app with password protected downloadable excel sheet
                             <ul class="list-group">
-                                <li class="list-item"><img src="./images/django-24.png" alt=""></li>
+                                <li class="list-item"><img src="./images/django-24.png" alt="django_image"></li>
                                 <li class="list-item"><img src="./images/python-24.png" alt="python_image"></li>
                                 <li class="list-item"><img src="./images/javascript-24.png" alt="javascript_image"></li>
                                 <li class="list-item"><img src="./images/bootstrap-24.png" alt="bootstrap_image"></li>
                             </ul>
                         </p>
                         <div class="d-flex justify-content-between">
-                            <a href="https://github.com/gon2410/form-excel-prod"><img src="./images/github-30.png" alt=""></a>
-                            <a href="https://form-excel-prod-production.up.railway.app/" class="btn btn-sm border">Demo</a>
+                            <a href="https://github.com/gon2410/form-excel-prod" class="text-muted text-underline">github</a>
+                            <a href="https://form-excel-prod-production.up.railway.app/" class="text-muted text-underline">demo</a>
                         </div>
                     </div>
                 </div>
-                <div class="card shadow rounded m-3" style="width: 18rem;">
-                    <img src="./images/carcompare_thumbnail.png" class="card-img-top" alt="confirmation_form_thumbnail">
+
+                <div class="card m-3" style="width: 18rem; height: 11.5rem;">
                     <div class="card-body">
-                        <h6 class="card-title">Car comparison app</h6>
-                        <p class="card-text">
+                        <h6 class="card-title">car-compare</h6>
+                        <p class="card-text text-muted" style="font-size: small;">
+                            very simple car comparison web app with mongodb
                             <ul class="list-group">
                                 <li class="list-item"><img src="./images/nodejs-24.png" alt="nodejs_image"></li>
                                 <li class="list-item"><img src="./images/javascript-24.png" alt="javascript_image"></li>
@@ -61,8 +83,8 @@
                             </ul>
                         </p>
                         <div class="d-flex justify-content-between">
-                            <a href="https://github.com/gon2410/CarCompare.git"><img src="./images/github-30.png" alt=""></a>
-                            <a href="https://carcompare-production.up.railway.app/" class="btn btn-sm border">Demo</a>
+                            <a href="https://github.com/gon2410/CarCompare.git" class="text-muted text-underline">github</a>
+                            <a href="https://carcompare-production.up.railway.app/" class="text-muted text-underline">demo</a>
                         </div>
                     </div>
                 </div>
@@ -70,11 +92,11 @@
         </section>
     </main>
 
-    <footer class="bg-dark">
+    <!-- <footer class="bg-dark">
         <section>
             <p class="text-light">Gonzalo Olivera</p>
         </section>
-    </footer>
+    </footer> -->
     <!-- <script src="./bootstrap/bootstrap-5.3.0-dist/js/bootstrap.js"></script> -->
 </body>
 </html>
