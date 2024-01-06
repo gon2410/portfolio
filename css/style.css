@@ -64,3 +64,11 @@ footer p {
 .card a {
   float: right;
 }/*# sourceMappingURL=style.css.map */
+
+.code {
+  border: 1px solid gray;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  background-color: #eee;
+  margin-bottom: 1rem;
+}

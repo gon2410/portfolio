@@ -22,14 +22,6 @@ body {
 
 header {
     grid-area: header;
-
-    .btn {
-        margin-left: 0.5rem;
-    }
-
-    .btn:hover {
-        text-decoration: underline;
-    }
 }
 
 main {

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Olivera</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./bootstrap/bootstrap-5.3.0-dist/css/bootstrap.css">
+</head>
+<body class="bg-light">    
+    <main>
+        <section class="p-1">
+            <div class="row">
+                <div class="col pt-5">
+                    <h5>Installing ArchLinux (UEFI)</h5>
+                </div>
+                <div class="col"> 
+                    <img class="rounded float-end" src="./images/arch-linux-svgrepo-com.svg" alt="profile_image" width="125rem">
+                </div>
+            </div>
+            <div class="mt-5">
+                <h6>About</h6>
+            </div>
+
+            <hr>
+
+            <div>
+                <p style="font-size: 0.9rem;">
+                    This is a guide to install ArchLinux on a UEFI system. I wrote it for me (it may help you too). If in the future I reinstall o install
+                    this OS on a different machine, I can follow it online. I could use the guide in the Arch wiki but I prefer this one. It's shorter.
+                </p>
+            </div>
+
+            <div class="mt-5">
+                <h6>Connecting to the internet</h6>
+                <hr>
+                <p style="font-size: 0.9rem;">
+                    First, you need to connect to the internet. If you have ethernet connection then you don't need to do anything. You can even connect trough ethernet
+                    with your phone and a USB cable. Check if it works with the following command.
+                </p>
+
+                <div class="code">
+                    <code># ping www.google.com</code>
+                </div>
+                
+
+                <p style="font-size: 0.9rem;">
+                    If it shows the ping repeating line after line, you're connected. Quit whit Ctrl+C.
+                </p>
+
+                <p style="font-size: 0.9rem;"> 
+                    If you don't have ehernet. Try the following command and follow the instructions to connect trough wifi. After that try the ping command again.
+                </p>
+
+                <div class="code">
+                    <code>wifi-menu</code>
+                </div>
+
+                <p style="font-size: 0.9rem;"> 
+                    If you don't have ehernet. Try the following command and follow the instructions to connect trough wifi. After that try the ping command again.
+                </p>
+            </div>
+
+            <div class="mt-5">
+                <h6>Set time</h6>
+                <hr>
+
+                <div class="code">
+                    <code># timedatectl set-ntp true</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">That's basically it</p>
+                
+            </div>
+
+            <div class="mt-5">
+                <h6>Partitioning disk</h6>
+                <hr>
+                <p style="font-size: 0.9rem;">Find the name of your drive with the following command. It will list all them. It's most likely that
+                the drive is called <code>/dev/sda</code></p>
+
+                <div class="code">
+                    <code># lsblk</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">Once you know the name of the drive, you follow the next command to open cfdisk to partition it.
+                Choose GPT label.</p>
+
+                <div class="code">
+                    <code># cfdisk /dev/sda</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">Give the following space to each partition. Of course it depends on the capacity of your drive. This one
+                    is 1TB capacity.</p>
+
+                <ul >
+                    <li class="d-block" style="font-size: 0.9rem;">/ Boot partition (dev/sda1) - 512MB or more</li>
+                    <li class="d-block" style="font-size: 0.9rem;">/ Swap partition (dev/sda2) - RAM * 2</li>
+                    <li class="d-block" style="font-size: 0.9rem;">/ Root partition (dev/sda3) - 200GB</li>
+                    <li class="d-block" style="font-size: 0.9rem;">/ Home partition (dev/sda4) - the rest</li>
+                </ul>
+
+                <p style="font-size: 0.9rem;">Write the changes and quit.</p>
+            
+            </div>
+
+            <div class="mt-5">
+                <h6>Formating Partitions</h6>
+                <hr>
+                <p style="font-size: 0.9rem;">The Boot partition needs to be FAT32 format since it's a UEFI system.</p>
+
+                <div class="code">
+                    <code># mkfs.fat -F32 /dev/sda1</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">The Root partition should be ext4 (extended 4) format.</p>
+
+                <div class="code">
+                    <code># mkfs.ext4 /dev/sda3</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">The Home partition should be ext4 (extended 4) format too.</p>
+
+                <div class="code">
+                    <code># mkfs.ext4 /dev/sda4</code>
+                </div>
+                
+                <p style="font-size: 0.9rem;">Create the swap partition.</p>
+
+                <div class="code">
+                    <code># mkswap /dev/sda2</code>
+                </div>
+
+                <p style="font-size: 0.9rem;">Mount the swap partition.</p>
+
+                <div class="code">
+                    <code># swapon /dev/sda2</code>
+                </div>
+                
+            </div>
+            
+</body>
+</html>
