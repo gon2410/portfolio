@@ -27,7 +27,7 @@
             <hr>
 
             <div>
-                <p style="font-size: 0.9rem;">
+                <p class="arch_p">
                     This is a guide to install ArchLinux on a UEFI system. I wrote it for me (it may help you too). If in the future I reinstall o install
                     this OS on a different machine, I can follow it online. I could use the guide in the Arch wiki but I prefer this one. It's shorter.
                 </p>
@@ -36,7 +36,7 @@
             <div class="mt-5">
                 <h6>Connecting to the internet</h6>
                 <hr>
-                <p style="font-size: 0.9rem;">
+                <p class="arch_p">
                     First, you need to connect to the internet. If you have ethernet connection then you don't need to do anything. You can even connect trough ethernet
                     with your phone and a USB cable. Check if it works with the following command.
                 </p>
@@ -46,11 +46,11 @@
                 </div>
                 
 
-                <p style="font-size: 0.9rem;">
+                <p class="arch_p">
                     If it shows the ping repeating line after line, you're connected. Quit whit Ctrl+C.
                 </p>
 
-                <p style="font-size: 0.9rem;"> 
+                <p class="arch_p"> 
                     If you don't have ehernet. Try the following command and follow the instructions to connect trough wifi. After that try the ping command again.
                 </p>
 
@@ -58,7 +58,7 @@
                     <code>wifi-menu</code>
                 </div>
 
-                <p style="font-size: 0.9rem;"> 
+                <p class="arch_p"> 
                     If you don't have ehernet. Try the following command and follow the instructions to connect trough wifi. After that try the ping command again.
                 </p>
             </div>
@@ -71,28 +71,28 @@
                     <code># timedatectl set-ntp true</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">That's basically it</p>
+                <p class="arch_p">That's basically it</p>
                 
             </div>
 
             <div class="mt-5">
                 <h6>Partitioning disk</h6>
                 <hr>
-                <p style="font-size: 0.9rem;">Find the name of your drive with the following command. It will list all them. It's most likely that
+                <p class="arch_p">Find the name of your drive with the following command. It will list all them. It's most likely that
                 the drive is called <code>/dev/sda</code></p>
 
                 <div class="code">
                     <code># lsblk</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">Once you know the name of the drive, you follow the next command to open cfdisk to partition it.
+                <p class="arch_p">Once you know the name of the drive, you follow the next command to open cfdisk to partition it.
                 Choose GPT label.</p>
 
                 <div class="code">
                     <code># cfdisk /dev/sda</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">Give the following space to each partition. Of course it depends on the capacity of your drive. This one
+                <p class="arch_p">Give the following space to each partition. Of course it depends on the capacity of your drive. This one
                     is 1TB capacity.</p>
 
                 <ul >
@@ -102,44 +102,237 @@
                     <li class="d-block" style="font-size: 0.9rem;">/ Home partition (dev/sda4) - the rest</li>
                 </ul>
 
-                <p style="font-size: 0.9rem;">Write the changes and quit.</p>
+                <p class="arch_p">Write the changes and quit.</p>
             
             </div>
 
             <div class="mt-5">
                 <h6>Formating Partitions</h6>
                 <hr>
-                <p style="font-size: 0.9rem;">The Boot partition needs to be FAT32 format since it's a UEFI system.</p>
+                <p class="arch_p">The Boot partition needs to be FAT32 format since it's a UEFI system.</p>
 
                 <div class="code">
                     <code># mkfs.fat -F32 /dev/sda1</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">The Root partition should be ext4 (extended 4) format.</p>
+                <p class="arch_p">The Root partition should be ext4 (extended 4) format.</p>
 
                 <div class="code">
                     <code># mkfs.ext4 /dev/sda3</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">The Home partition should be ext4 (extended 4) format too.</p>
+                <p class="arch_p">The Home partition should be ext4 (extended 4) format too.</p>
 
                 <div class="code">
                     <code># mkfs.ext4 /dev/sda4</code>
                 </div>
                 
-                <p style="font-size: 0.9rem;">Create the swap partition.</p>
+                <p class="arch_p">Create the swap partition.</p>
 
                 <div class="code">
                     <code># mkswap /dev/sda2</code>
                 </div>
 
-                <p style="font-size: 0.9rem;">Mount the swap partition.</p>
+                <p class="arch_p">Mount the swap partition.</p>
 
                 <div class="code">
                     <code># swapon /dev/sda2</code>
                 </div>
                 
             </div>
-            
+
+            <div class="mt-5">
+                <h6>Mounting Partitions</h6>
+                <hr>
+
+                <p class="arch_p">Mounting root partition.</p>
+
+                <div class="code">
+                    <code># mount /dev/sda3 /mnt</code>
+                </div>
+
+                <p class="arch_p">Creating home directory.</p>
+
+                <div class="code">
+                    <code># mkdir /mnt/home</code>
+                </div>
+
+                <p class="arch_p">Mounting home partition into home directory</p>
+
+                <div class="code">
+                    <code># mount /dev/sda4 /mnt/home</code>
+                </div>
+            </div>
+
+
+            <div class="mt-5">
+                <h6>Installing base system</h6>
+                <hr>
+
+                <p class="arch_p">We need to install the base system, a text editor (in this case nano) and the linux kernel. This takes
+                    some time depending on your internet speed.
+                </p>
+
+                <div class="code">
+                    <code># pacstrap /mnt base base-devel nano linux</code>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h6>Generating fstab</h6>
+                <hr>
+
+                <div class="code">
+                    <code># genfstab -U -p /mnt >> /mnt/etc/fstab</code>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h6>New installed system</h6>
+                <hr>
+
+                <p class="arch_p">Enter to your new installed system with the following command.</p>
+
+                <div class="code">
+                    <code># arch-chroot /mnt</code>
+                </div>
+
+                <p class="arch_p">Choose the system language. In this case, English. Open locale.gen file with nano editor and uncomment the line <code>en.US.UTF-8</code>
+                . Ctrl+S to save and Ctr+X to exit.</p>
+                <div class="code">
+                    <code># nano /etc/locale.gen</code>
+                </div>
+
+                <p class="arch_p">Then generate the locale</p>
+                <div class="code">
+                    <code># locale-gen</code>
+                </div>
+
+                <p class="arch_p">Link the time zone to your local time. In my case, America, Buenos Aires.</p>
+                <div class="code">
+                    <code># ln -sf /usr/share/zone/America/Buenos\ Aires /etc/localtime</code>
+                </div>
+
+                <p class="arch_p">Sync the system clock with the hardware clock</p>
+                <div class="code">
+                    <code># hwclock --systohc --utc</code>
+                </div>
+
+                <p class="arch_p">Set the hostname. This can be whatever name you want. I'll choose arch.</p>
+                <div class="code">
+                    <code># echo arch > /etc/hostname</code>
+                </div>
+
+                <p class="arch_p">Install network manager. This is very important to have internet acceess when you reboot into the fresh system.</p>
+                <div class="code">
+                    <code># pacman -S networkmanager</code>
+                </div>
+
+                <p class="arch_p">Don't forget to enable it first</p>
+                <div class="code">
+                    <code># systemctl enable NetworkManager</code>
+                </div>
+
+                <p class="arch_p">Set the root password. Again, whatever password you want.</p>
+                <div class="code">
+                    <code># passwd</code>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h6>GRUB</h6>
+                <hr>
+
+                <p class="arch_p">Install grub</p>
+                <div class="code">
+                    <code># pacman -S grub efibootmgr</code>
+                </div>
+
+                <p class="arch_p">Create /boot/efi directory.</p>
+                <div class="code">
+                    <code># mkdir /boot/efi</code>
+                </div>
+
+                <p class="arch_p">Mount boot partition in recently created /boot/efi directory.</p>
+                <div class="code">
+                    <code># mount /dev/sda1 /boot/efi</code>
+                </div>
+
+                <p class="arch_p">Install grub bootloader into /boot/efi directory</p>
+                <div class="code">
+                    <code># grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi</code>
+                </div>
+
+                <p class="arch_p">Generate grub config file</p>
+                <div class="code">
+                    <code># grub-mkconfig -o /boot/grub/grub.cfg</code>
+                </div>
+
+                <p class="arch_p">This part I took it from a yotube channel called <a href="https://www.youtube.com/@AverageLinuxUser">Average Linux User</a>, all credits to him.
+                This part is to make sure the OS boots no matter what goes wrong. Create another EFI/BOOT directory in /boot/efi</p>
+                <div class="code">
+                    <code># mkdir /boot/efi/EFI/BOOT</code>
+                </div>
+
+                <p class="arch_p">Copy the same grub file in the recently created /EFI/BOOT directory.</p>
+                <div class="code">
+                    <code># cp /boot/efi/EFI/GRUB/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI</code>
+                </div>
+
+                <p class="arch_p">Create a startup file with nano editor.</p>
+                <div class="code">
+                    <code># nano /boot/efi/startup.nsh</code>
+                </div>
+
+                <p class="arch_p">Write the following two lines. Ctrl+S to save and Ctrl+X to exit.</p>
+                <div class="code">
+                    <code>bcf boot add 1 fs0:/EFI/GRUB/grubx64.efi "My Grub Bootloader"</code>
+                    <code class="d-block">exit</code>
+                </div>
+
+                <p class="arch_p">Exit the installed system.</p>
+                <div class="code">
+                    <code># exit</code>
+                </div>
+
+                <p class="arch_p">Unmount the /mnt directory.</p>
+                <div class="code">
+                    <code># umount -R /mnt</code>
+                </div>
+
+                <p class="arch_p">Reboot the machine.</p>
+                <div class="code">
+                    <code># systemctl reboot</code>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h6>Create your user</h6>
+                <hr>
+
+                <p class="arch_p">After rebooting, you have to login as root user. That is using the password you created before. After
+                    you do that, create a user and add him to the wheel and video group.
+                </p>
+
+                <div class="code">
+                    <code># useradd -m -G wheel,video username</code>
+                </div>
+
+                <p class="arch_p">Give your user a password</p>
+                <div class="code">
+                    <code># passwd username</code>
+                </div>
+
+                <p class="arch_p">Edit the sudoers file to give users in wheel group (where your user is) super user privileges. Find wheel group and uncomment the line.
+                    It looks something like this <code>%WHEEL ALL=(ALL:ALL) ALL</code>. Ctrl+S to save and Ctrl+X to exit.
+                </p>
+                <div class="code">
+                    <code># nano /etc/sudoers</code>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h6>That's it. Congratulations, you installed ArchLinux.</h6>
+            </div>
 </body>
 </html>
