@@ -41,7 +41,7 @@ main section {
 main section .section-title {
   float: left;
 }
-main section #card-section {
+main section .card-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
