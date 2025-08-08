@@ -58,13 +58,6 @@ footer p {
   top: 45%;
 }
 
-.card ul {
-  display: inline;
-}
-.card a {
-  float: right;
-}/*# sourceMappingURL=style.css.map */
-
 .code {
   border: 1px solid gray;
   border-radius: 0.2rem;

@@ -11,112 +11,91 @@
     <script src="./bootstrap/bootstrap-5.3.0-dist/js/bootstrap.js"></script>
 </head>
 <body class="bg-light">
-    <!-- <header>
-        <section>
-            <div class="row">
-                <div class="col">
-                    <h5>Gonzalo Olivera</h5>
-                    <p class="text-muted" style="font-size: small;">gonzalo_olivera24@hotmail.com</p>
-                    <a href="https://www.linkedin.com/in/gonzalo-olivera-124b091b4/" class="text-underline">LinkedIn</a>
-                    <a class="d-block" href="./images/Olivera gonzalo.pdf" download>Download CV</a>
-                </div>
-                <div class="col"> 
-                    <img class="rounded float-end" src="./images/profile.jpg" alt="profile_image" width="125rem">
-                </div>
+    <header>
+        <nav class="d-flex justify-content-center">
+            <div class="d-flex justify-content-between">
+                <h5 class="p-3">Gonzalo Olivera</h5>
+                <a
+                    class="text-underline p-3"
+                    href="https://www.linkedin.com/in/gonzalo-olivera-124b091b4/"
+                    target="_blank">LinkedIn</a>
             </div>
-        </section>
-    </header> -->
+        </nav>
+    </header>
     
     <main>
         <section class="p-1">
-            <div class="row">
-                <div class="col">
-                    <h5>Gonzalo Olivera</h5>
-                    <p class="text-muted" style="font-size: small;">gonzalo_olivera24@hotmail.com</p>
-                    <a href="https://www.linkedin.com/in/gonzalo-olivera-124b091b4/" class="text-underline">LinkedIn</a>
-                    <a class="d-block" href="./images/cv_olivera_gonzalo.pdf" download>Download CV</a>
-                </div>
-                <div class="col"> 
-                    <img class="rounded float-end" src="./images/profile.png" alt="profile_image" width="125rem">
-                </div>
-            </div>
             <div class="mt-5">
-                <h6>About</h6>
+                <h6>Resumen</h6>
             </div>
-
             <hr>
             <div>
-                <p style="font-size: 0.9rem;">Hello! My name is Gonzalo, I'm from Argentina and I'm currently a tennis coach. I'm a student of Informatic Engineering.
-                    My skilled languages are Python and JavaScript as well as Git as version control and Django and NodeJS as frameworks. I also have +5 years of experience using Linux (Arch and Ubuntu)
-                    as main operating system so I know my way around the terminal. I do not have work experience so I'm looking forward to start working as a junior or trainee developer.
+                <p style="font-size: 0.9rem;">
+                    Hola! Mi nombre es Gonzalo Olivera,
+                    soy estudiante de Ingeniería en Sistemas
+                    de Información en la UTN de Córdoba.
+                    Cuento con experiencia laboral que logré
+                    realizando proyectos de forma independiente
+                    a clientes particulares, lo que me permitió
+                    aplicar conocimientos y desarrollarme en
+                    la práctica real. Actualmente estoy buscando
+                    unirme a una empresa donde pueda continuar
+                    creciendo profesionalmente.
                 </p>
             </div>
             <div class="section-title mt-5">
-                <h6>Projects</h6>
+                <h6>Algunos trabajos realizados</h6>
             </div>
 
             <hr>
 
             <div class="section-body row card-section">
-                <div class="card m-3" style="width: 18rem; height: 11.5rem;">
+                <div class="card m-3 d-flex flex-column" style="width: 18rem; height: 16rem;">
                     <div class="card-body">
-                        <h6 class="card-title">RSVP Form</h6>
-                        <p class="card-text text-muted" style="font-size: small;">
-                            rsvp web app with password protected admin panel (in development)
-                            <ul class="list-group">
-                                <li class="list-item"><img src="./images/django-24.png" alt="django_image"></li>
-                                <li class="list-item"><img src="./images/python-24.png" alt="python_image"></li>
-                                <li class="list-item"><img src="./images/javascript-24.png" alt="javascript_image"></li>
-                                <li class="list-item"><img src="./images/bootstrap-24.png" alt="bootstrap_image"></li>
-                            </ul>
+                        <h6 class="card-title">RSVP</h6>
+                        <p class="card-text text-muted" style="font-size: small;">Es una app web que
+                            permite a los invitados confirmar su asistencia a un evento ingresando
+                            únicamente su nombre, apellido y preferencia de menú. Las tecnologías usadas fueron
+                            <b>Next.js</b> con <b>ShadCN</b> y <b>Tailwind</b> para el frontend y el backend fue desarrollado
+                            con <b>FastAPI</b> y <b>Supabase</b>.
                         </p>
-                        <div class="d-flex justify-content-between">
-                            <a href="https://github.com/gon2410/form" class="text-muted text-underline">github</a>
-                            <a href="https://web-production-ab65.up.railway.app/" class="text-muted text-underline">demo</a>
-                            <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-auto p-3 pt-0">
+                        <a class="text-muted text-underline" href="https://github.com/gon2410/rsvp_frontend" target="_blank">github</a>
+                        <a class="text-muted text-underline" href="https://form-supa-next.vercel.app/" target="_blank">demo</a>
+                    </div>
+                </div>
+                <div class="card m-3 d-flex flex-column" style="width: 18rem; height: 16rem;">
+                    <div class="card-body">
+                        <h6 class="card-title">Lanzamiento Dongfeng (landing page)</h6>
+                        <p class="card-text text-muted" style="font-size: small;">Fue un trabajo real
+                            para una concesionaria que necesitaba un link para difundir entre sus invitados.
+                            Fue desarrollado utilizando <b>Next.js</b> con <b>ShadCN</b> y <b>Tailwind</b>.
+                            Trabajé en conjunto con <a href="https://www.instagram.com/jpgboutiquedediseno/" target="_blank">Juan Gambino</a>, diseñador gráfico.
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-between mt-auto p-3 pt-0">
+                        <a class="text-muted text-underline" href="https://github.com/gon2410/lanzamiento" target="_blank">github</a>
+                        <a class="text-muted text-underline" href="https://www.estasinvitado.website/lanzamiento-dongfeng" target="_blank">link</a>
                     </div>
                 </div>
 
-                <div class="card m-3" style="width: 18rem; height: 11.5rem;">
+                <div class="card m-3 d-flex flex-column" style="width: 18rem; height: 16rem;">
                     <div class="card-body">
-                        <h6 class="card-title">car-compare</h6>
+                        <h6 class="card-title">RSVP Pilar Y Santiago</h6>
                         <p class="card-text text-muted" style="font-size: small;">
-                            very simple car comparison web app with mongodb
-                            <ul class="list-group">
-                                <li class="list-item"><img src="./images/nodejs-24.png" alt="nodejs_image"></li>
-                                <li class="list-item"><img src="./images/javascript-24.png" alt="javascript_image"></li>
-                                <li class="list-item"><img src="./images/bootstrap-24.png" alt="bootstrap_image"></li>
-                                <li class="list-item"><img src="./images/mongodb-24.png" alt="bootstrap_image"></li>
-                            </ul>
+                            Fue un trabajo real para una pareja que necesitaba una forma simple de gestionar sus invitados.
+                            Cuenta con un panél de administración protegido. Fue desarrollado utilizando <b>HTML</b>, <b>CSS</b> y
+                            <b>JavaScript</b> para el frontend y <b>Django</b> para el backend. Trabajé en conjunto con
+                            <a href="https://www.instagram.com/jpgboutiquedediseno/" target="_blank">Juan Gambino</a>, diseñador gráfico.
                         </p>
-                        <div class="d-flex justify-content-between">
-                            <a href="https://github.com/gon2410/CarCompare.git" class="text-muted text-underline">github</a>
-                            <!-- <a href="https://carcompare-production.up.railway.app/" class="text-muted text-underline">demo</a> -->
-                        </div>
+                    </div> 
+                    <div class="d-flex justify-content-between mt-auto p-3 pt-0">
+                        <a class="text-muted text-underline" href="https://github.com/gon2410/form" target="_blank">github</a>
+                        <a class="text-muted text-underline" href="https://web-production-ab65.up.railway.app/" target="_blank">demo</a>
                     </div>
                 </div>
             </div>
-            <div class="mt-5">
-                <h6>Other</h6>
-            </div>
-
-            <hr>
-
-            <div class="row card-section">
-                <div class="card m-3" style="width: 18rem; height: 8.5rem;">
-                    <div class="card-body">
-                        <h6 class="card-title">Installing ArchLinux</h6>
-                        <p class="card-text text-muted" style="font-size: small;">
-                            guide to install archlinux in a UEFI system
-                        </p>
-                        <div class="d-flex justify-content-between">
-                            <a href="./archlinux.html" class="text-muted text-underline float-end">read</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </section>
 
         <!-- Modal -->
