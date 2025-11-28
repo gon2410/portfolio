@@ -6,325 +6,370 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gonzalo Olivera</title>
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./bootstrap/bootstrap-5.3.0-dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-light">    
-    <main>
-        <section class="p-1">
-            <div class="row">
-                <div class="col pt-5">
-                    <h5>Installing ArchLinux (UEFI)</h5>
-                </div>
-                <div class="col"> 
-                    <img class="rounded float-end" src="./images/arch-linux-svgrepo-com.svg" alt="profile_image" width="125rem">
+<body>
+    <header>
+        <nav class="relative">
+            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div>
+                        <a href="/index.html" class="text-2xl text-gray-600 font-semibold">Gonzalo Olivera</a>
+                        <p class="font-semibold inline">/ Helpdesk - SysAdmin Junior</p>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/gonzalo-olivera-124b091b4/" class="text-gray-600 font-semibold">linkedIn</a>
+                        <a href="https://github.com/gon2410" class="text-gray-600 font-semibold">github</a>
+                    </div>
                 </div>
             </div>
-            <div class="mt-5">
-                <h6>About</h6>
-            </div>
+        </nav>
+    </header>
 
+    <main class="mx-auto max-w-[50rem] mt-5 grid gap-[5rem]">
+        <div>
+            <p class="text-xl">Conectando a internet</p>
             <hr>
+            <br>
+            <p>
+                Primero, es necesario tener conexión a internet. Lo ideal seria conectar un cable de ethernet. Si no tenés,
+                podés hacerlo con tu teléfono conectandolo a la computadora con un cable USB. Ahora, para verificar podes
+                hacerlo con:
+            </p>
 
             <div>
-                <p class="arch_p">
-                    This is a guide to install ArchLinux on a UEFI system. I wrote it for me (it may help you too).
-                </p>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ ping www.google.com</code></pre>
             </div>
-
-            <div class="mt-5">
-                <h6>Connecting to the internet</h6>
-                <hr>
-                <p class="arch_p">
-                    First, you need to connect to the internet. If you have ethernet connection then you don't need to do anything. You can even connect trough ethernet
-                    with your phone and a USB cable. Check if it works with the following command.
-                </p>
-
-                <div class="code">
-                    <code># ping www.google.com</code>
-                </div>
-                
-
-                <p class="arch_p">
-                    If it shows the ping repeating line after line, you're connected. Quit whit Ctrl+C.
-                </p>
-
-                <p class="arch_p"> 
-                    If you don't have ehernet. Try the following command and follow the instructions to connect trough wifi. After that try the ping command again.
-                </p>
-
-                <div class="code">
-                    <code>wifi-menu</code>
-                </div>
-            </div>
-
-            <div class="mt-5">
-                <h6>Set time</h6>
-                <hr>
-
-                <div class="code">
-                    <code># timedatectl set-ntp true</code>
-                </div>                
-            </div>
-
-            <div class="mt-5">
-                <h6>Partitioning disk</h6>
-                <hr>
-                <p class="arch_p">Find the name of your drive with the following command. It will list all of them. It's most likely that
-                the drive is called <code>/dev/sda</code></p>
-
-                <div class="code">
-                    <code># lsblk</code>
-                </div>
-
-                <p class="arch_p">Once you know the name of the drive, you follow the next command to open cfdisk to partition it.
-                Choose GPT label.</p>
-
-                <div class="code">
-                    <code># cfdisk /dev/sda</code>
-                </div>
-
-                <p class="arch_p">Give the following space to each partition. Of course it depends on the capacity of your drive. This one
-                    is 1TB capacity.</p>
-
-                <ul >
-                    <li class="d-block" style="font-size: 0.9rem;">/ Boot partition (dev/sda1) - 512MB or more</li>
-                    <li class="d-block" style="font-size: 0.9rem;">/ Swap partition (dev/sda2) - RAM * 2</li>
-                    <li class="d-block" style="font-size: 0.9rem;">/ Root partition (dev/sda3) - 200GB</li>
-                    <li class="d-block" style="font-size: 0.9rem;">/ Home partition (dev/sda4) - the rest</li>
-                </ul>
-
-                <p class="arch_p">Write the changes and quit.</p>
             
+            <p>En el caso que solo puedas conectarte inalámbricamente, podes hacerlo con el comando:</p>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ wifi-menu</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xl">Setear hora</p>
+            <hr>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ timedatectl set-ntp true</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xl">Particionar el disco</p>
+            <hr>
+            <br>
+            <p>
+                Primero hay que encontrar el nombre del disco donde se va a instalar Arch. El comando de abajo va a listar
+                todos los discos disponibles. Por ejemplo, en mi caso se llama <b>sda</b> y es el que usaremos de ahora en más.
+            </p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ lsblk</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>Formating Partitions</h6>
-                <hr>
-                <p class="arch_p">The Boot partition needs to be FAT32 format since it's a UEFI system.</p>
-
-                <div class="code">
-                    <code># mkfs.fat -F32 /dev/sda1</code>
-                </div>
-
-                <p class="arch_p">The Root partition should be ext4 (extended 4) format.</p>
-
-                <div class="code">
-                    <code># mkfs.ext4 /dev/sda3</code>
-                </div>
-
-                <p class="arch_p">The Home partition should be ext4 (extended 4) format too.</p>
-
-                <div class="code">
-                    <code># mkfs.ext4 /dev/sda4</code>
-                </div>
-                
-                <p class="arch_p">Create the swap partition.</p>
-
-                <div class="code">
-                    <code># mkswap /dev/sda2</code>
-                </div>
-
-                <p class="arch_p">Mount the swap partition.</p>
-
-                <div class="code">
-                    <code># swapon /dev/sda2</code>
-                </div>
-                
+            <p>
+                Una vez que sepas el nombre de tu disco, ejecutá el siguiente comando para abrir <b>cfdisk</b>, el
+                cual es un programa que nos ayuda a particionar discos.
+            </p>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ cfdisk /dev/sda</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>Mounting Partitions</h6>
-                <hr>
+            <p>
+                El disco se va a particionar en cuatro divisiones y el tamaño para cada partición va a depender del tamaño de tu disco. El mio es de 1TB. Pero es posible
+                tener una idea o noción con este listado:
+            </p>
+            <br>
+            <table class="w-full border">
+                <thead>
+                    <tr>
+                        <th>Partición</th>
+                        <th>Tamaño</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr class="border">
+                        <td>BOOT (dev/sda1)</td>
+                        <td>512MB o más (1GB seria ideal)</td>
+                    </tr>
+                    <tr class="border">
+                        <td>SWAP(dev/sda2)</td>
+                        <td>la_capacidad_de_ram * 2 (8GB * 2 = 16GB)</td>
+                    </tr>
+                    <tr>
+                        <td>ROOT(dev/sda3)</td>
+                        <td>200GB</td>
+                    </tr>
+                    <tr class="border">
+                        <td>HOME (dev/sda4)</td>
+                        <td>lo restante</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <p>Guardar los cambios y salír.</p>
+        </div>
 
-                <p class="arch_p">Mounting root partition.</p>
-
-                <div class="code">
-                    <code># mount /dev/sda3 /mnt</code>
-                </div>
-
-                <p class="arch_p">Creating home directory.</p>
-
-                <div class="code">
-                    <code># mkdir /mnt/home</code>
-                </div>
-
-                <p class="arch_p">Mounting home partition into home directory</p>
-
-                <div class="code">
-                    <code># mount /dev/sda4 /mnt/home</code>
-                </div>
+        <div>
+            <p class="text-xl">Formateando particiones</h6>
+            <hr>
+            <br>
+            <p>La partición <b>BOOT</b> debe ser de formato <b>FAT32</b> ya que el sistema es <b>UEFI</b>:</p>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkfs.fat -F32 /dev/sda1</code></pre>
             </div>
 
+            <p>La partición <b>ROOT</b> debe ser de formato <b>ext4</b>:</p>
 
-            <div class="mt-5">
-                <h6>Installing base system</h6>
-                <hr>
-
-                <p class="arch_p">We need to install the base system, a text editor (in this case nano) and the linux kernel. This takes
-                    some time depending on your internet speed.
-                </p>
-
-                <div class="code">
-                    <code># pacstrap /mnt base base-devel nano linux</code>
-                </div>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkfs.ext4 /dev/sda3</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>Generating fstab</h6>
-                <hr>
+            <p>La partición <b>HOME</b> también debe ser de formato <b>ext4</b>:</p>
 
-                <div class="code">
-                    <code># genfstab -U -p /mnt >> /mnt/etc/fstab</code>
-                </div>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkfs.ext4 /dev/sda4</code></pre>
+            </div>
+            
+            <p>Crear partición <b>SWAP</b>:</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkswap /dev/sda2</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>New installed system</h6>
-                <hr>
+            <p class="arch_p">Montar partición <b>SWAP</b>:</p>
 
-                <p class="arch_p">Enter your new installed system with the following command.</p>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ swapon /dev/sda2</code></pre>
+            </div>
+        </div>
 
-                <div class="code">
-                    <code># arch-chroot /mnt</code>
-                </div>
+        <div>
+            <p class="text-xl">Montando particiones</h6>
+            <hr>
+            <br>
+            <p>Montar partición <b>ROOT</b>:</p>
 
-                <p class="arch_p">Choose the system language. In this case, English. Open locale.gen file with nano editor and uncomment the line <code>en.US.UTF-8</code>
-                . Ctrl+S to save and Ctr+X to exit.</p>
-                <div class="code">
-                    <code># nano /etc/locale.gen</code>
-                </div>
-
-                <p class="arch_p">Then generate the locale</p>
-                <div class="code">
-                    <code># locale-gen</code>
-                </div>
-
-                <p class="arch_p">Link the time zone to your local time. In my case, America, Buenos Aires.</p>
-                <div class="code">
-                    <code># ln -sf /usr/share/zone/America/Buenos\ Aires /etc/localtime</code>
-                </div>
-
-                <p class="arch_p">Sync the system clock with the hardware clock</p>
-                <div class="code">
-                    <code># hwclock --systohc --utc</code>
-                </div>
-
-                <p class="arch_p">Set the hostname. This can be whatever name you want. I'll choose arch.</p>
-                <div class="code">
-                    <code># echo arch > /etc/hostname</code>
-                </div>
-
-                <p class="arch_p">Install network manager. This is very important to have internet acceess when you reboot into the fresh system.</p>
-                <div class="code">
-                    <code># pacman -S networkmanager</code>
-                </div>
-
-                <p class="arch_p">Don't forget to enable it first</p>
-                <div class="code">
-                    <code># systemctl enable NetworkManager</code>
-                </div>
-
-                <p class="arch_p">Set the root password. Again, whatever password you want.</p>
-                <div class="code">
-                    <code># passwd</code>
-                </div>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mount /dev/sda3 /mnt</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>GRUB</h6>
-                <hr>
+            <p class="arch_p">Crear directorio <b>HOME</b>:</p>
 
-                <p class="arch_p">Install grub</p>
-                <div class="code">
-                    <code># pacman -S grub efibootmgr</code>
-                </div>
-
-                <p class="arch_p">Create /boot/efi directory.</p>
-                <div class="code">
-                    <code># mkdir /boot/efi</code>
-                </div>
-
-                <p class="arch_p">Mount boot partition in recently created /boot/efi directory.</p>
-                <div class="code">
-                    <code># mount /dev/sda1 /boot/efi</code>
-                </div>
-
-                <p class="arch_p">Install grub bootloader into /boot/efi directory</p>
-                <div class="code">
-                    <code># grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi</code>
-                </div>
-
-                <p class="arch_p">Generate grub config file</p>
-                <div class="code">
-                    <code># grub-mkconfig -o /boot/grub/grub.cfg</code>
-                </div>
-
-                <p class="arch_p">This part I took it from a yotube channel called <a href="https://www.youtube.com/@AverageLinuxUser">Average Linux User</a>, all credits to him.
-                This part is to make sure the OS boots no matter what goes wrong. Create another EFI/BOOT directory in /boot/efi</p>
-                <div class="code">
-                    <code># mkdir /boot/efi/EFI/BOOT</code>
-                </div>
-
-                <p class="arch_p">Copy the same grub file in the recently created /EFI/BOOT directory.</p>
-                <div class="code">
-                    <code># cp /boot/efi/EFI/GRUB/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI</code>
-                </div>
-
-                <p class="arch_p">Create a startup file with nano editor.</p>
-                <div class="code">
-                    <code># nano /boot/efi/startup.nsh</code>
-                </div>
-
-                <p class="arch_p">Write the following two lines. Ctrl+S to save and Ctrl+X to exit.</p>
-                <div class="code">
-                    <code>bcf boot add 1 fs0:/EFI/GRUB/grubx64.efi "My Grub Bootloader"</code>
-                    <code class="d-block">exit</code>
-                </div>
-
-                <p class="arch_p">Exit the installed system.</p>
-                <div class="code">
-                    <code># exit</code>
-                </div>
-
-                <p class="arch_p">Unmount the /mnt directory.</p>
-                <div class="code">
-                    <code># umount -R /mnt</code>
-                </div>
-
-                <p class="arch_p">Reboot the machine.</p>
-                <div class="code">
-                    <code># systemctl reboot</code>
-                </div>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkdir /mnt/home</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>Create your user</h6>
-                <hr>
+            <p class="arch_p">Montar partición <b>HOME</b> en el directorio <b>HOME</b>:</p>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mount /dev/sda4 /mnt/home</code></pre>
+            </div>
+        </div>
 
-                <p class="arch_p">After rebooting, you have to login as root user. That is using the password you created before. After
-                    you do that, create a user and add him to the wheel and video group.
-                </p>
+        <div>
+            <p class="text-xl">Instalando el sistema base</p>
+            <hr>
+            <br>
+            <p>
+                Necesitamos instalar el sistema base, un editor de texto (en este caso, <b>Nano</b>) y el kernel de Linux.
+                Puedo tomarse un tiempo dependiendo de la velocidad de tu conexión de internet.
+            </p>
 
-                <div class="code">
-                    <code># useradd -m -G wheel,video username</code>
-                </div>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ pacstrap /mnt base base-devel nano linux</code></pre>
+            </div>
+        </div>
 
-                <p class="arch_p">Give your user a password</p>
-                <div class="code">
-                    <code># passwd username</code>
-                </div>
+        <div>
+            <p class="text-xl">Generando fstab</p>
+            <hr>
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ genfstab -U -p /mnt >> /mnt/etc/fstab</code></pre>
+            </div>
+        </div>
 
-                <p class="arch_p">Edit the sudoers file to give users in wheel group (where your user is) super user privileges. Find wheel group and uncomment the line.
-                    It looks something like this <code>%WHEEL ALL=(ALL:ALL) ALL</code>. Ctrl+S to save and Ctrl+X to exit.
-                </p>
-                <div class="code">
-                    <code># nano /etc/sudoers</code>
-                </div>
+        <div class="mt-5">
+            <p class="text-xl">Nuevo sistema instalado</p>
+            <hr>
+            <br>
+            <p>Ingresar en el nuevo sistema instalado con el siguiente comando:</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ arch-chroot /mnt</code></pre>
             </div>
 
-            <div class="mt-5">
-                <h6>That's it. Congratulations, you installed ArchLinux.</h6>
+            <p>
+                Elegir el lenguaje del sistema. Recomiendo usar Inglés, English. Abrir <b>locale.gen</b> con el editor
+                de text previamente instalado y descomenta la linea <b>#en.US.UTF-8</b>.
+            </p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ nano /etc/locale.gen</code></pre>
             </div>
+
+            <p>Luego, lo generamos:</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ locale-gen</code></pre>
+            </div>
+
+            <p>Linkear la zona horario con tu horario local. En mi caso, <b>America, Buenos Aires</b></p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ ln -sf /usr/share/zone/America/Buenos\ Aires /etc/localtime</code></pre>
+            </div>
+
+            <p>Sincronizar el reloj del sistema con el reloj del hardware.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ hwclock --systohc --utc</code></pre>
+            </div>
+
+            <p>Setear nombre de host (hostname). Puede ser el nombre que quieras.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ echo arch > /etc/hostname</code></pre>
+            </div>
+
+            <p>Instalar network manager. Esto es muy importante para tener acceso a internet luego del primer reinicio
+                en tu nuevo sistema operativo.
+            </p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ pacman -S networkmanager</code></pre>
+            </div>
+
+            <p>Y no te olvides de habilitarlo.</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ systemctl enable NetworkManager</code></pre>
+            </div>
+
+            <p>Setear contraseña root.</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ passwd</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xl">GRUB</p>
+            <hr>
+            <br>
+            <p>Instalar GRUB</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ pacman -S grub efibootmgr</code></pre>
+            </div>
+
+            <p>Crear directorio <b>/boot/efi</b></p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkdir /boot/efi</code></pre>
+            </div>
+
+            <p>Montar partición <b>BOOT</b> en el directorio creado arriba (<b>/boot/efi</b>).</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mount /dev/sda1 /boot/efi</code></pre>
+            </div>
+
+            <p>Instalar el bootloeadr de GRUB en el directorio <b>/boot/efi</b>.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi</code></pre>
+            </div>
+
+            <p>Generar el archivo de configuración de GRUB.</p>
+                        
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+            </div>
+
+            <p>
+                Esta parte la obtuve de un canál de YouTube llamado <a href="https://www.youtube.com/@AverageLinuxUser">Average Linux User</a>,
+                y su función es asegurar que el sistema operativo arranque sin importar que suceda.
+                Crear otro directorio llamado <b>EFI/BOOT</b> dentro de <b>/boot/efi</b>.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ mkdir /boot/efi/EFI/BOOT</code></pre>
+            </div>    
+
+            <p>Copiar el mismo archivo de GRUB recientemente creado en el directorio <b>EFI/BOOT</b>.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ cp /boot/efi/EFI/GRUB/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.EFI</code></pre>
+            </div>
+
+            <p>Crear un archivo de arranque con el editor <b>NANO</b>.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ nano /boot/efi/startup.nsh</code></pre>
+            </div>
+
+            <p>Escribe las siguientes dos lineas, y luego presione Ctrl+S para guardar y Ctrl+X para salir del editor.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded">
+                    <code>
+                        bcf boot add 1 fs0:/EFI/GRUB/grubx64.efi "My Grub Bootloader"
+                        exit
+                    </code>
+                </pre>
+            </div>
+
+            <p class="arch_p">Salir del sistema instalado</p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ exit</code></pre>
+            </div>
+
+            <p>Desmontar el directorio <b>/mnt</b>.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ umount -R /mnt</code></pre>
+            </div>
+
+            <p>Reiniciar la máquina.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ systemctl reboot</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xl">Crea tu usuario</h6>
+            <hr>
+            <br>
+            <p>
+                Despues de reiniciar tenes que loguearte como usuario root. Esto significa usar la contraseña que seteaste mas
+                arriba. Luego de hacer esto, podes crear tu usuario y agregar a dos grupos: wheel y video.
+            </p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ useradd -m -G wheel,video username</code></pre>
+            </div>
+
+            <p>Dale a tu usuario una contraseña.</p>
+            
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ passwd username</code></pre>
+            </div>
+
+            <p>
+                Edita el archivo <b>sudoers</b> para darle a los usuario en el grupo wheel privilegios de superusuario.
+                Busca el grupo wheel en el archivo y descomenta la linea. Es algo asi: <b>%WHEEL ALL=(ALL:ALL) ALL</b>.
+                Luego Ctrl+S para guardar y Ctrl+X para salir.
+            </p>
+
+            <div>
+                <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ nano /etc/sudoers</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <p>Eso es todo.</p>
+        </div>
 </body>
 </html>
