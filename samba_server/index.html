@@ -71,13 +71,13 @@
                 <b>Enter</b> te va a pedir que ingreses tu contraseña de administrador:
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/sudo_vmware_2.png" alt="">
+                <img src="images/sudo_vmware_2.png" alt="">
             </div>
             <p>
                 Luego de que ingreses tu contraseña, se abrira VMware:
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/wmare.png" alt="">
+                <img src="images/wmare.png" alt="">
             </div>
         </div>
         <div>
@@ -94,24 +94,24 @@
                 Para hacer esto, haces click derecho en la maquina virtual y seleccionas <b>Settings</b>.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/vmware_2.png" alt="">
+                <img src="images/vmware_2.png" alt="">
             </div>
             <p>
                 Esto abre la ventana de configuraciónes:
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/vmware_3.png" alt="">
+                <img src="images/vmware_3.png" alt="">
             </div>
             <p>
                 Luego, seleccionas <b>Network Adapter</b> y elegís la opción <b>bridged.</b> Por último,
                 apretas <b>Save</b> para guardar y se cierra.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/vmware_4.png" alt="">
+                <img src="images/vmware_4.png" alt="">
             </div>
             <p>Y ahora si, arrancas la máquina virtual:</p>
             <div class="my-3">
-                <img src="/samba_server/images/vmware_5.png" alt="">
+                <img src="images/vmware_5.png" alt="">
             </div>
         </div>
 
@@ -123,7 +123,7 @@
                 Ahora que tenemos la máquina virtual, nos logueamos con nuestro usuario y contraseña:
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/server_1.png" alt="">
+                <img src="images/server_1.png" alt="">
             </div>
             <p>
                 Antes de instalar Samba (en realidad para instalar cualquier paquete), es buena práctica
@@ -136,7 +136,7 @@
                 Al ejecutar este comando, primero, como vimos antes, te pedirá la contraseña de administrador.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/server_2.png" alt="">
+                <img src="images/server_2.png" alt="">
             </div>
             <p>Bueno, ahora si instalamos Samba con el siguiente comando:</p>
             <div>
@@ -147,7 +147,7 @@
                 ya está instalado por lo tanto me avisa lo propio.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/server_3.png" alt="">
+                <img src="images/server_3.png" alt="">
             </div>
             <p>
                 Una vez que Samba esta instalado, es hora de activar el servicio a traves de <b>systemd</b>, el sistema
@@ -158,7 +158,7 @@
                 <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ sudo systemctl enable smbd --now</code></pre>
             </div>
             <div class="my-3">
-                <img src="/samba_server/images/server_4.png" alt="">
+                <img src="images/server_4.png" alt="">
             </div>
             <p>Y luego, lo activamos:</p>
             <div>
@@ -169,7 +169,7 @@
                 <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ sudo systemctl status smbd</code></pre>
             </div>
             <div class="my-3">
-                <img src="/samba_server/images/server_5.png" alt="">
+                <img src="images/server_5.png" alt="">
             </div>
         </div>
 
@@ -192,7 +192,7 @@
                 <pre class="my-3 p-2 bg-gray-300 rounded"><code>$ sudo chown gon:gon /srv/archivos</code></pre>
             </div>
             <div class="my-3">
-                <img src="/samba_server/images/server_6.png" alt="">
+                <img src="images/server_6.png" alt="">
             </div>
             <p>Por último, abrimos el archivo de configuración de Samba:</p>
             <div>
@@ -211,7 +211,7 @@
                 </pre>
             </div>
             <div class="my-3">
-                <img src="/samba_server/images/server_7.png" alt="">
+                <img src="images/server_7.png" alt="">
             </div>
         </div>
         <div>
@@ -223,27 +223,27 @@
                 creado recien. Para esto me posiciono dentro de la carpeta con el comando <b>cd</b> (<b>c</b>hange <b>d</b>irectory):
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/server_8.png" alt="">
+                <img src="images/server_8.png" alt="">
             </div>
             <p>
                 Y luego, ejecutamos varios comandos. Usamos <b>touch</b> para crear el archivo en el lugar. A continuación
                 usamos <b>echo</b> para escribir una linea dentro del archivo. Luego verificamos el contenido con <b>cat</b>.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/server_9.png" alt="">
+                <img src="images/server_9.png" alt="">
             </div>
             <p>
                 Bueno, ahora en la máquina host ejecuto <b>Nautilus</b> que es el explorador de archivos instalado y me dirijo a
                 <b>+ Other Locations</b>
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/nautilus_1.png" alt="">
+                <img src="images/nautilus_1.png" alt="">
             </div>
             <p>Ahora, posicionado en esta area. Abajo del todo hay un campo para ingresar la direccion del servidor, la cual, en
                 mi caso, es esta: <b>smb://gonzaloserver/</b>. "gonzaloserver" es el hostname. Mas arriba indiqué como averiguarlo.
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/nautilus_2.png" alt="">
+                <img src="images/nautilus_2.png" alt="">
             </div>
             <p>
                 Presiono <b>connect</b> y se conectará el servidor. Como lo configuramos para que aceptara invitados
@@ -251,14 +251,14 @@
                 <b>archivos:</b>
             </p>
             <div class="my-3">
-                <img src="/samba_server/images/nautilus_3.png" alt="">
+                <img src="images/nautilus_3.png" alt="">
             </div>
             <p>Y dentro de <b>archivos</b> está el archivo de texto creado en el servidor! Lo abrimos</p>
             <div class="my-3">
-                <img src="/samba_server/images/nautilus_4.png" alt="">
+                <img src="images/nautilus_4.png" alt="">
             </div>
             <div class="my-3">
-                <img src="/samba_server/images/nautilus_5.png" alt="">
+                <img src="images/nautilus_5.png" alt="">
             </div>
             <p>Y esto es un servidor de archivos básico. Existen mas configuraciones para hacerlo mas seguro pero a partir de acá
                 podés crear archivos, editarlos y acceder a ellos desde cualquier dispositivo que sea capaz de conectarse.
